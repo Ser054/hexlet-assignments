@@ -19,7 +19,7 @@ class App{
                     if(book.getKey() == defineInfo.getKey() && book.getValue() == defineInfo.getValue()){
                         allCorrect = true;
                     }
-                    else{
+                    else if (book.getKey() == defineInfo.getKey() && book.getValue() != defineInfo.getValue()){
                         allCorrect = false;
                         break;
                     }
