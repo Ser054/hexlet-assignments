@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 
 // BEGIN
-class App {
-    public static List<Map<String, String>> findWhere(List<Map<String, String>> books, Map<String, String> where) {
+class App{
+    public static List<Map<String, String>> findWhere(List<Map<String, String>> books, Map<String, String> where){
         List<Map<String, String>> findBooks = new ArrayList<>();
 
         for(int i = 0; i < books.size(); i++){
-            for (Map.Entry<String, String> book: books.get(i).entrySet()){
+            for(Map.Entry<String, String> book: books.get(i).entrySet()){
                 Boolean allCorrect = false;
-                for (Map.Entry<String, String> defineInfo: where.entrySet()) {
+                for(Map.Entry<String, String> defineInfo: where.entrySet()){
                     //!!!
-                    if (book.getKey() == defineInfo.getKey() && book.getValue() == defineInfo.getValue()){
+                    if(book.getKey() == defineInfo.getKey() && book.getValue() == defineInfo.getValue()){
                         allCorrect = true;
                     }
                     else{
+                        allCorrect = false;
                         break;
                     }
                 }
@@ -33,7 +34,7 @@ class App {
 
         return findBooks;
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         List<Map<String, String>> books = new ArrayList<>();
 
         Map<String, String> book1 = new HashMap<>(
@@ -62,6 +63,6 @@ class App {
         List<Map<String, String>> result = App.findWhere(books, where);
 
         System.out.println(result);
-    }
+    }*/
 }
 //END
