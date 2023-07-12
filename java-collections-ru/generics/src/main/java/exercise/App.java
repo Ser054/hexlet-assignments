@@ -10,31 +10,22 @@ import java.util.Map.Entry;
 class App{
     public static List<Map<String, String>> findWhere(List<Map<String, String>> books, Map<String, String> where){
         List<Map<String, String>> findBooks = new ArrayList<>();
-
-        for(int i = 0; i < books.size(); i++){
-            for(Map.Entry<String, String> book: books.get(i).entrySet()){
-                Boolean allCorrect = false;
-                for(Map.Entry<String, String> defineInfo: where.entrySet()){
-                    //!!!
-                    if(book.getKey() == defineInfo.getKey() && book.getValue() == defineInfo.getValue()){
-                        allCorrect = true;
-                    }
-                    else if (book.getKey() == defineInfo.getKey() && book.getValue() != defineInfo.getValue()){
-                        allCorrect = false;
-                        break;
-                    }
-                }
-                if(allCorrect){
-                    Map<String, String> findBook = new HashMap<>();
-                    findBook.putAll(books.get(i));
-                    findBooks.add(findBook);
+        for(int i = 0; i < books.size(); i++) {
+            Boolean allCorrect = true;
+            for (Map.Entry<String, String> defineInfo : where.entrySet()) {
+                if (books.get(i).get(defineInfo.getKey()) != defineInfo.getValue()) {
+                    allCorrect = false;
                 }
             }
+            if(allCorrect){
+                Map<String, String> findBook = new HashMap<>();
+                findBook.putAll(books.get(i));
+                findBooks.add(findBook);
+            }
         }
-
         return findBooks;
     }
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         List<Map<String, String>> books = new ArrayList<>();
 
         Map<String, String> book1 = new HashMap<>(
@@ -58,11 +49,11 @@ class App{
         books.add(book4);
         books.add(book5);
 
-        Map<String, String> where = new HashMap<>(Map.of("author", "Shakespeare", "year", "1611"));
+        Map<String, String> where = new HashMap<>(Map.of("author", "FooBar", "year", "3333"));
 
         List<Map<String, String>> result = App.findWhere(books, where);
 
         System.out.println(result);
-    }*/
+    }
 }
 //END
